@@ -1,7 +1,6 @@
 import tcod
 from debugger import Debugger
 from world import World
-from human import Human
 from ui import UI
 
 def main():
@@ -19,7 +18,7 @@ def main():
         title="Human Simulation",
         vsync=True,
     ) as context:
-        console = tcod.Console(screen_width, screen_height, order="F")
+        console = tcod.console.Console(screen_width, screen_height, order="F")
         
         # Create world and populate with humans
         world = World(width=screen_width-2, height=screen_height-2)
@@ -39,9 +38,9 @@ def main():
                 if event.type == "QUIT":
                     raise SystemExit()
                 elif event.type == "KEYDOWN":
-                    if event.sym == tcod.event.K_q:
+                    if event.sym == tcod.event.KeySym.q:
                         raise SystemExit()
-                    if event.sym == tcod.event.K_d:
+                    if event.sym == tcod.event.KeySym.d:
                         debugger.debugPrint()
 
 if __name__ == "__main__":
