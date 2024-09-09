@@ -60,7 +60,7 @@
 
 ### 4.1 Programming Language and Libraries
 - Python
-- curses library for ASCII visualization
+- tcod library for ASCII visualization and game development
 
 ### 4.2 Key Classes
 - Human: Represents individual entities
