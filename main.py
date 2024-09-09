@@ -1,4 +1,5 @@
 import tcod
+from debugger import Debugger
 from world import World
 from human import Human
 from ui import UI
@@ -26,7 +27,7 @@ def main():
 
         # Create UI
         ui = UI(console, world)
-
+        debugger = Debugger(world)
         # Main game loop
         while True:
             world.update()
@@ -40,6 +41,8 @@ def main():
                 elif event.type == "KEYDOWN":
                     if event.sym == tcod.event.K_q:
                         raise SystemExit()
+                    if event.sym == tcod.event.K_d:
+                        debugger.debugPrint()
 
 if __name__ == "__main__":
     main()
