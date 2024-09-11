@@ -2,7 +2,7 @@ class Debugger:
     def __init__(self, world):
         self.world = world
 
-    def debugPrint(self):
+    def debug_print(self):
         print("Humans in the world:")
         for i, human in enumerate(self.world.humans, 1):
             print(f"  Human {i}:")
@@ -11,6 +11,6 @@ class Debugger:
             for trait, value in human.traits.items():
                 print(f"      {trait.name}: {value:.2f}")
             print("    Needs:")
-            for need, value in human.needs.items():
+            for need, value in human.need_levels.items():
                 print(f"      {need.name}: {value:.2f}")
             print()  # Add a blank line between humans

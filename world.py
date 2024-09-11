@@ -20,3 +20,16 @@ class World:
         # Update world state and human actions
         for human in self.humans:
             human.update(self)
+
+    def get_human_at(self, x, y):
+        if 0 <= x < self.width and 0 <= y < self.height:
+            for human in self.humans:
+                if human.x == x and human.y == y:
+                    return human
+        return None
+
+    def move_human(self, human, new_x, new_y):
+        if 0 <= new_x < self.width and 0 <= new_y < self.height:
+            self.grid[human.y][human.x] = ' '
+            human.x, human.y = new_x, new_y
+            self.grid[new_y][new_x] = '@'

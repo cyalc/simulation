@@ -1,27 +1,31 @@
 import random
-from enum import Enum
 
-class Trait(Enum):
-    OPENNESS = 0
-    CONSCIENTIOUSNESS = 1
-    EXTRAVERSION = 2
-    AGREEABLENESS = 3
-    NEUROTICISM = 4
-
-class Need(Enum):
-    PHYSIOLOGICAL = 0
-    SAFETY = 1
-    BELONGINGNESS = 2
-    ESTEEM = 3
-    SELF_ACTUALIZATION = 4
+from need import Need
+from trait import Trait
 
 class Human:
     def __init__(self, x, y):
         self.x = x
         self.y = y
         self.traits = {trait: random.random() for trait in Trait}
-        self.needs = {need: random.random() for need in Need}
+        self.need_levels = {need: 0.0 for need in Need}  # Start with all needs unfulfilled
+        self.id = random.randint(1000, 9999)  # Add this line
 
     def update(self, world):
-        # Update needs and make decisions based on personality
+        for need in Need:
+            if self.need_levels[need] < 1.0:  # Need is not fully satisfied
+                self.fulfill_need(need, world)
+                break  # Focus on the lowest unfulfilled need in the hierarchy
+
+    def fulfill_need(self, need, world):
+        # Implement need fulfillment logic here
+        # Increase the need level based on actions taken
         pass
+
+    def get_properties(self):  # Add this method
+        return {
+            "ID": self.id,
+            "Position": f"({self.x}, {self.y})",
+            "Traits": {trait.name: f"{value:.2f}" for trait, value in self.traits.items()},
+            "Needs": {need.name: f"{value:.2f}" for need, value in self.need_levels.items()}
+        }
